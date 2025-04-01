@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:miapp_flutter/contact.dart';
+import 'package:miapp_flutter/menu.dart';
 
 void main() => runApp(const MyApp());
 
@@ -11,8 +13,44 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Coffe Shop',
       home: Scaffold(
+        drawer: Drawer(
+        child: Container(
+          color:const Color.fromARGB(255, 196, 72, 113),
+          child: Column(
+            children: [
+              Container(
+                width: 200,
+                height: 200,
+                margin: const EdgeInsets.only(top: 50, bottom:20),
+                child: Image.network('assets/coffe_shop_logo.png'),
+              ),
+              
+                ListTile(
+                leading: const Icon(Icons.home),
+                title: const Text( "Inicio", style: TextStyle(color: Colors.white)),
+              ),
+
+              ListTile(
+                leading: const Icon(Icons.contact_page),
+                title: const Text('Contacto',  style: TextStyle(color: Colors.white)),
+                onTap: () =>
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ContactPage())),
+              ),
+              
+              ListTile(
+                 leading: const Icon(Icons.menu),
+                 title: const Text( "Menú", style: TextStyle(color: Colors.white)),
+                onTap: () =>
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MenuPage())),
+              ),
+            ],
+          ),
+        ),
+      ),
+        appBar: AppBar(),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        
           child: Column (
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,28 +59,50 @@ class MyApp extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text( 'COFFE SHOP', style: TextStyle(
-                color: const Color.fromARGB(255, 144, 22, 63),
-                fontSize: 70,
+                color: const Color.fromARGB(255, 156, 59, 91),
+                fontSize: 40,
                 fontWeight: FontWeight.bold
                 ),),
                 Text( 'Prepárate para probar el mejor café del mundo', style: TextStyle(
-                  color: Colors.black,
+                  color:const Color.fromARGB(255, 82, 53, 42),
                   fontSize:25,
-
                 ),)
                ],
              ),
             Image.asset('assets/coffe_shop_logo.png'),
             Column(
               children: [
-                ElevatedButton(onPressed: (){}, child: Text ('IR A INSTAGRAM') ),
-                ElevatedButton(onPressed: (){}, child: Text ('IR A FACEBOOK') ),
+                ElevatedButton(onPressed: (){}, child: Text ('IR A INSTAGRAM', style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                ),),
+
+                style:ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 156, 59, 91),
+                  padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                  minimumSize: Size(double.infinity, 50)
+                ),
+                ),
+                SizedBox(height: 15),
+                ElevatedButton(onPressed: (){}, child: Text ('IR A FACEBOOK',  style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  ) ),
+                 style:ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 156, 59, 91),
+                  padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                  minimumSize: Size(double.infinity, 50),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                
+                ),
+                ),
               ],
             )
             ],
             
                ),
         )),
+       
      );
   }
 }
