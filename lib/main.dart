@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:miapp_flutter/contact.dart';
 import 'package:miapp_flutter/menu.dart';
+import 'package:miapp_flutter/routes/approute.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() => runApp(const MyApp());
 
@@ -11,7 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Coffe Shop',
+      title: 'Coffe Shop', 
+      routes: Approute.routes,
       home: Scaffold(
         drawer: Drawer(
         child: Container(
@@ -22,7 +25,7 @@ class MyApp extends StatelessWidget {
                 width: 200,
                 height: 200,
                 margin: const EdgeInsets.only(top: 50, bottom:20),
-                child: Image.network('assets/coffe_shop_logo.png'),
+                child: Image.asset('assets/coffe_shop_logo.png'),
               ),
               
                 ListTile(
@@ -38,10 +41,12 @@ class MyApp extends StatelessWidget {
               ),
               
               ListTile(
-                 leading: const Icon(Icons.menu),
+                 leading: const Icon(Icons.coffee),
                  title: const Text( "Menú", style: TextStyle(color: Colors.white)),
-                onTap: () =>
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MenuPage())),
+                 onTap: () {                 
+                  Navigator.pushNamed(context, 'menu');      
+                  }        
+                
               ),
             ],
           ),
@@ -72,7 +77,15 @@ class MyApp extends StatelessWidget {
             Image.asset('assets/coffe_shop_logo.png'),
             Column(
               children: [
-                ElevatedButton(onPressed: (){}, child: Text ('IR A INSTAGRAM', style: TextStyle(
+                ElevatedButton(onPressed: () async{
+                  final Uri instagramurl = Uri.parse('https://www.instagram.com/coffeshopmgta');
+                  if (await canLaunchUrl(instagramurl)){
+                     launchUrl(instagramurl);
+                  }else{
+                    throw 'error al abrir Instagram. Intente mas tarde';
+                  }
+                }, 
+                child: Text ('IR A INSTAGRAM', style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,
                 ),),
@@ -84,7 +97,15 @@ class MyApp extends StatelessWidget {
                 ),
                 ),
                 SizedBox(height: 15),
-                ElevatedButton(onPressed: (){}, child: Text ('IR A FACEBOOK',  style: TextStyle(
+                ElevatedButton(onPressed: () async{
+                  
+                  final Uri facebookurl = Uri.parse('https://www.instagram.com/coffeshopmgta');
+                  if (await canLaunchUrl(facebookurl)){
+                     launchUrl(facebookurl);
+                  }else{
+                    throw 'error al abrir Facebook. Intente mas tarde';
+                  }
+                }, child: Text ('IR A FACEBOOK',  style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,
                   ) ),
@@ -94,15 +115,13 @@ class MyApp extends StatelessWidget {
                   minimumSize: Size(double.infinity, 50),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
                 
-                ),
+                 ),
                 ),
               ],
-            )
+             )
             ],
-            
-               ),
+          ),
         )),
-       
-     );
-  }
+      );
+   }
 }
