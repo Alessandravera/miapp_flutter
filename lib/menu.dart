@@ -9,7 +9,7 @@ class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      return Scaffold(
-      appBar: AppBar(title: const Text('Menú')),
+      appBar: AppBar(title: const Text('Menú'), backgroundColor: Color.fromARGB(255, 196, 72, 113)),
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,

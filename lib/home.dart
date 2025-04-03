@@ -15,6 +15,13 @@ class HomePage extends StatelessWidget {
       }
     }
 
+    final Uri facebookurl = Uri.parse('https://www.instagram.com/coffeshopmgta'); //cambiar la url de facebook
+    Future<void> _cargarFa() async {
+      if (!await launchUrl(facebookurl)) {
+        throw Exception('no se pudo cargar instagram $facebookurl');
+      }
+    }
+
     return Scaffold(
         drawer: Drawer(
         child: Container(
@@ -91,15 +98,7 @@ class HomePage extends StatelessWidget {
                 ),
                 ),
                 SizedBox(height: 15),
-                ElevatedButton(onPressed: () async{
-                  
-                  final Uri facebookurl = Uri.parse('https://www.instagram.com/coffeshopmgta');
-                  if (await canLaunchUrl(facebookurl)){
-                     launchUrl(facebookurl);
-                  }else{
-                    throw 'error al abrir Facebook. Intente mas tarde';
-                  }
-                }, child: Text ('IR A FACEBOOK',  style: TextStyle(
+                ElevatedButton(onPressed: _cargarFa, child: Text ('IR A FACEBOOK',  style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,
                   ) ),
