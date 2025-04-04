@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
 
               
                 ListTile(
-                leading: const Icon(Icons.home, color: Colors.white), 
+                leading: const Icon(Icons.contact_page, color: Colors.white), 
                 title: Text( "Contacto", style: GoogleFonts.roboto(color: Color.fromARGB(255, 255, 255, 255),
                 fontWeight: FontWeight.w500)),
                  onTap: () {                 
