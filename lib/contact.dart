@@ -33,7 +33,7 @@ class ContactPage extends StatelessWidget {
                       Shadow(
                         offset: Offset(2.0, 2.0), // Desplazamiento de la sombra (horizontal, vertical)
                         blurRadius: 20.0, // Radio de desenfoque de la sombra
-                        color: Colors.grey, // Color de la sombra
+                        color: Colors.grey, 
                       ),
                     ],
                     ).copyWith(
